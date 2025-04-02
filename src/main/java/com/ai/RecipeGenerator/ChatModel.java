@@ -14,7 +14,7 @@ import java.util.Map;
 public class ChatModel {
 
     @Value("${groq.api.key}")
-    private String apiKey;
+    private String apiKey;  // Secure API key from environment variables
 
     private final RestTemplate restTemplate;
     private static final String API_URL = "https://api.groq.com/openai/v1/chat/completions";
@@ -25,7 +25,7 @@ public class ChatModel {
 
     public String call(String prompt) {
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization", "Bearer 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");
+        headers.set("Authorization", "Bearer " + apiKey); // Secure API key
         headers.set("Content-Type", "application/json");
 
         Map<String, Object> requestPayload = Map.of(
